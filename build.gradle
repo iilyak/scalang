@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.boundary'
+version = '0.25'
+
+description = """scalang"""
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+        
+     maven { url "http://jetlang.googlecode.com/svn/repo/" }
+     maven { url "http://maven.boundary.com/artifactory/repo/" }
+     maven { url "http://scala-tools.org/repo-releases/" }
+     maven { url "http://scala-tools.org/repo-snapshots" }
+     maven { url "http://repo1.maven.org/maven2" }
+     maven { url "http://maven.ow2.org/maven2" }
+}
+dependencies {
+    compile group: 'com.boundary', name: 'overlock-scala_2.9.1', version:'0.8.1'
+    compile group: 'org.jetlang', name: 'jetlang', version:'0.2.10-capped'
+    compile group: 'org.jboss.netty', name: 'netty', version:'3.2.4.Final'
+    testCompile group: 'junit', name: 'junit', version:'4.8.2'
+    testCompile group: 'org.scala-tools.testing', name: 'specs_2.9.1', version:'1.6.9'
+}
