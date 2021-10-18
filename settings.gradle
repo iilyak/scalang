@@ -1,1 +1,7 @@
 rootProject.name = 'scalang-scala_2.9.1'
+
+sourceControl {
+    gitRepository("https://github.com/iilyak/overlock.git") {
+         producesModule("com.boundary:overlock-scala_2.9.1")
+    }
+}
