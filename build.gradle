@@ -15,18 +15,29 @@ tasks.withType(JavaCompile) {
 
 
 repositories {
-     maven { url "http://jetlang.googlecode.com/svn/repo/" }
-     maven { url "http://maven.boundary.com/artifactory/repo/" }
-     maven { url "http://scala-tools.org/repo-releases/" }
-     maven { url "http://scala-tools.org/repo-snapshots" }
-     maven { url "http://repo1.maven.org/maven2" }
-     maven { url "http://maven.ow2.org/maven2" }
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2')
+    }
+    maven {
+        url = uri('https://maven.cloudant.com/repo/')
+    }
 }
 
 dependencies {
-    compile group: 'com.boundary', name: 'overlock-scala_2.9.1', version:'use-gradle'
+    // scalang and its dependencies
+    implementation('com.boundary:overlock-scala_2.9.1') {
+        version {
+            branch = 'use-gradle'
+        }
+    }
+
     compile group: 'org.jetlang', name: 'jetlang', version:'0.2.10-capped'
     compile group: 'org.jboss.netty', name: 'netty', version:'3.2.4.Final'
-    testCompile group: 'junit', name: 'junit', version:'4.8.2'
+
+    // testing
+    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'org.specs2:specs2_2.9.1:1.12.4'
+    testImplementation 'org.pegdown:pegdown:1.4.0'
+
     testCompile group: 'org.scala-tools.testing', name: 'specs_2.9.1', version:'1.6.9'
 }
